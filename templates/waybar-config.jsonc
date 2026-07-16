@@ -1,0 +1,63 @@
+// Clean Waybar configuration template
+// Modules are organized by position: left, center, right
+
+{
+    "layer": "top",
+    "position": "top",
+    "height": 35,
+    "spacing": 4,
+    "margin-top": 4,
+    "margin-left": 8,
+    "margin-right": 8,
+    "exclusive": true,
+    "fixed-center": true,
+
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": ["clock"],
+    "modules-right": ["pulseaudio", "network", "tray"],
+
+    // ━━━ Workspaces ━━━
+    "hyprland/workspaces": {
+        "format": "{id}",
+        "on-click": "activate",
+        "sort-by-number": true,
+        "persistent-workspaces": {
+            "1": [], "2": [], "3": [], "4": [], "5": []
+        }
+    },
+
+    // ━━━ Clock ━━━
+    "clock": {
+        "format": "{:%H:%M}",
+        "format-alt": "{:%A, %B %d, %Y}",
+        "tooltip-format": "<tt><b>{:%A, %B %d, %Y}</b>\n{:%H:%M:%S}</tt>"
+    },
+
+    // ━━━ Audio ━━━
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "🔇 Muted",
+        "format-icons": {
+            "default": ["🔈", "🔉", "🔊"]
+        },
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click-right": "pavucontrol",
+        "scroll-step": 5
+    },
+
+    // ━━━ Network ━━━
+    "network": {
+        "format-wifi": " {essid}",
+        "format-ethernet": "🔌 {ipaddr}",
+        "format-disconnected": "⚠ Offline",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)\n{ipaddr}",
+        "tooltip-format-ethernet": "{ifname}\n{ipaddr}/{cidr}",
+        "on-click": "nm-connection-editor"
+    },
+
+    // ━━━ System Tray ━━━
+    "tray": {
+        "icon-size": 18,
+        "spacing": 8
+    }
+}
